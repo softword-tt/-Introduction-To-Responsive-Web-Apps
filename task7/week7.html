@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>week7</title> <!-- page title -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body {
+            background-image: url("images/dog.jpg");
+            background-size: 100%;
+        }
+
+        .yheader {
+            width: 100%;
+            height: 62px;
+            background: rgb(152, 174, 63);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .move {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            animation: myfirst 5s linear 2s infinite alternate;
+        }
+
+        @keyframes myfirst {
+            0% {
+                background-color: red;
+                left: 0px;
+                top: 0px;
+            }
+
+            25% {
+                background-color: yellow;
+                left: 200px;
+                top: 0px;
+            }
+
+            50% {
+                background-color: blue;
+                left: 200px;
+                top: 200px;
+            }
+
+            75% {
+                background-color: green;
+                left: 0px;
+                top: 200px;
+            }
+
+            100% {
+                background-color: red;
+                left: 0px;
+                top: 0px;
+            }
+        }
+
+        #myDiv {
+            transform: rotateX(150deg);
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- linked to styles.css -->
+    <style>
+        .header-list li {
+            float: left;
+            line-height: 62px;
+            margin: 0 auto;
+            width: 25%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="ex">Week 4: Vue.js Framework </h1>
+    <header id="yheader" class="yheader">
+        <div class="w1200">
+            <ul class="header-list">
+                <li><a href="#task1">Task1</a></li>
+                <li><a href="#task2">Task2</a></li>
+                <li><a href="#task3">Task3</a></li>
+                <li><a href="#task4">Task4</a></li>
+            </ul>
+        </div>
+    </header>
+    <br>
+    <div class="center_div" id="task1">
+        <h2>Task 1 : Local and Global Registration</h2>
+
+        <div class="ex" id="example1-1">
+
+            <h4>LOCAL REGISTRATION</h4>
+
+            <demo-component v-bind:title="title" v-bind:likes="40" v-bind:commentids="commentids"
+                v-bind:author="author"></demo-component>
+
+            <h4>GLOBAL REGISTRATION</h4>
+
+            <demo-component v-bind:title="post.title" v-bind:likes="post.likes" v-bind:commentids="post.commentids"
+                v-bind:author="post.author" v-on:say-hi="sayHi"></demo-component>
+
+            <component-a></component-a>
+        </div>
+    </div>
+    <br>
+    <div class="center_div" id="task2">
+        <h2>Task 2 : Exploring Vue Framework</h2>
+
+        <div class="ex" id="example2-1">
+            <child :text="message"></child>
+        </div>
+
+
+    </div>
+    <br>
+    <div class="center_div" id="task3">
+        <h2>Task 3 : Custom Events</h2>
+        <div id="example">
+            <parent></parent>
+        </div>
+        <script>
+            var childNode = {
+                template: `
+  <div class="child">
+    <div>
+      <span>child component </span>
+      <input v-model="childMsg" @input="data">
+    </div>
+    <p>{{childMsg}}</p>
+  </div>
+  `,
+                data() {
+                    return {
+                        childMsg: ''
+                    }
+                },
+                methods: {
+                    data() {
+                        this.$emit('pass-data', this.childMsg)
+                    }
+                }
+            }
+            var parentNode = {
+                template: `
+  <div class="parent">
+    <div>
+      <span>parent component</span>
+      <input v-model="msg">
+    </div>
+    <p>{{msg}}</p>
+    <child @pass-data="getData"></child>
+  </div>
+  `,
+                components: {
+                    'child': childNode
+                },
+                data() {
+                    return {
+                        'msg': 'match'
+                    }
+                },
+                methods: {
+                    getData(value) {
+                        this.msg = value;
+                    }
+                }
+            };
+
+            new Vue({
+                el: '#example',
+                components: {
+                    'parent': parentNode
+                }
+            })
+        </script>
+
+    </div>
+    <br>
+    <div class="center_div" id="task4">
+
+
+        <h2>Task 4 : Vue Slots - coding Named Slots</h2>
+
+        <div id="example4-1">
+            <section class="hero is-fullheight is-warning is-bold">
+                <div class="hero-body">
+                    <div class="container">
+                        <p class="title is-1">{{ title }}</p>
+                        <p class="subtitle is-3">{{ subtitle }}</p>
+                        <child-component>
+                            <p slot="bottom">DECRIPTION</p>
+                            <p>title goes here</p>
+                            <p slot="top">TITLE</p>
+                        </child-component>
+                        <child-component></child-component>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script type="text/x-template" id="child-component">
+            <div>
+                <slot name="top">
+                </slot>
+                <slot>
+                  <p>decription goes here</p>
+                </slot>
+                <slot name="bottom">
+                </slot>
+              </div>
+            </script>
+
+
+    </div>
+
+
+    <script src="vue.js"></script> <!-- linked to scripts.js -->
+</body>
+
+</html>

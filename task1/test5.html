@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <!-- Internal CSS -->
+    <style>
+        .text {
+            text-align: center;
+            color: blue;
+        }
+
+        .container {
+            column-width: 250px;
+            column-gap: 20px;
+            margin: 1em 1em 1em 1em;
+        }
+
+        .card {
+            background-color: rgb(207, 232, 220);
+            border: 2px solid rgb(79, 185, 227);
+            padding: 10px;
+            margin: 0 0 1em 0;
+        }
+    </style>
+    <meta charset="utf-8">
+    <title>test5</title> <!-- page title -->
+    <link rel="icon" type="image/png" sizes="144x144" href="images/logo.png" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- linked to styles.css -->
+    <script src="function.js"></script>
+</head>
+
+<body>
+
+    <header id="header" class="header">
+        <div class="w1200">
+            <ul class="header-list">
+                <li><a href="#">Task 1</a></li>
+                <li><a href="#">Task 2</a></li>
+                <li><a href="#">Task 3</a></li>
+            </ul>
+        </div>
+    </header>
+    <h2>Task 1 - Create an HTML Page</h2>
+    <img src="images/dog.jpg" alt="dog in a sunny day" width="250" height="180">
+    <p>HTML Home Page</p>
+
+    <h2>Task 2 - Add CSS to your HTML page</h2>
+    <p class="text">This is a internal CSS example.</p>
+    <!-- Inline CSS -->
+    <p style="text-align:center;color:red;">This is a inline CSS example.</p>
+    <div class="container">
+        <div class="card">
+            <h2>Multiple-column Layout</h2>
+            <p> Multiple-column Layout is closely related to Paged Media, in that each column box becomes a
+                fragment, much like a printed page becomes a fragment of an overall document. Therefore the
+                properties now defined in the CSS Fragmentationspecification are required in order to control how
+                content breaks between columns.
+            </p>
+        </div>
+        <div class="card">
+            <h2>Multiple-column Layout</h2>
+            <p> Multiple-column Layout is closely related to Paged Media, in that each column box becomes a
+                fragment, much like a printed page becomes a fragment of an overall document. Therefore the
+                properties now defined in the CSS Fragmentationspecification are required in order to control how
+                content breaks between columns.
+            </p>
+        </div>
+    </div>
+    <h2>Task 3 - Add Javascript</h2>
+    <p id="demo">What time is it? </p>
+
+    <button type="button" onclick="displayDate()" style="display:block;margin:0 auto">
+        a responsive button</button>
+    <br>
+    <script>
+        studentScore();
+    </script>
+    <h2>Task 5 - Vue.js Framework</h2>
+    <div id="app">
+        <h3 style="text-align:center">Your To Dos</h3>
+        <p>
+          <input type="text" v-model="inputTodo" placeholder="Enter new todo" />
+          <button @click="createTodo">Submit</button>
+        </p>
+        <ul>
+          <li v-for="todo in todos">
+            {{ todo }} &nbsp;
+            <span style="cursor: pointer;" @click="deleteTodo(todo)">❌</span>
+          </li>
+        </ul>
+      </div>
+      <script src="https://unpkg.com/vue"></script>
+      <script src="./main.js"></script>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js"></script>
+</body>
+
+</html>
